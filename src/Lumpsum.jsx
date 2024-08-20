@@ -9,7 +9,7 @@ const Lumpsum = ({ onChange }) => {
     });
 
     const onInputChange = (e) => {
-        const changedInput = { ...input, [e.target.name]: e.target.value };
+        const changedInput = { ...input, [e.target.name]: +e.target.value };
         setInput(changedInput);
     };
 
