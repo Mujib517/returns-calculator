@@ -8,14 +8,14 @@ const PieChart = ({ data }) => {
     const { amount, finalAmount } = data;
 
     const chartData = {
-        labels: ['Invested Amount', 'Future Value'],
+        labels: ['Invested', 'Returns'],
         datasets: [
             {
-                label: 'Investment Breakdown',
+                label: '',
                 data: [amount, finalAmount - amount],
                 backgroundColor: [
-                    'rgba(255, 159, 64, 0.6)',
-                    'rgba(75, 192, 192, 0.6)',
+                    '#D97706',
+                    'rgb(21 128 61)',
                 ],
                 borderColor: [
                     'rgba(255, 159, 64, 1)',
