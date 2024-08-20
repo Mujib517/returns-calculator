@@ -13,7 +13,7 @@ function Tabs({ onChange }) {
     const unSelectedClass = "inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group";
 
     return <div class="border-b border-gray-200">
-        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500">
+        <ul class="flex -mb-px text-sm font-medium text-gray-500">
             <li class="me-2" onClick={() => onItemClick(1)}>
                 <a href="#" className={selected === 1 ? selectedClass : unSelectedClass} aria-current="page">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
