@@ -15,7 +15,8 @@ const Lumpsum = ({ onChange }) => {
 
     const onCalculate = () => {
         const { amount, cagr, tenure } = input;
-        const percent = 1 + (cagr/100);
+        if (!amount) return;
+        const percent = 1 + (cagr / 100);
         const finalAmount = amount * (Math.pow(percent, tenure));
         onChange({
             amount,
@@ -25,10 +26,10 @@ const Lumpsum = ({ onChange }) => {
         });
     };
 
-    return <div class="max-w-sm p-4">
+    return <div class="max-w-sm w-full p-4">
         <div class="mb-5">
             <label for="Amount" class="block mb-2 text-sm font-medium text-gray-900">Total Amount</label>
-            <input name="amount" onChange={onInputChange} type="number" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="10000" />
+            <input name="amount" onChange={onInputChange} type="number" id="email" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="10000" />
         </div>
         <div>
             <div class="relative mb-6">
