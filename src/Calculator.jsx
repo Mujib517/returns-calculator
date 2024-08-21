@@ -35,8 +35,10 @@ const Calculator = ({ onChange, isSIP }) => {
     };
 
     const onCalculate = () => {
-        const finalAmount = isSIP ? calculateSIP() : calculateLumpsum();
         const { amount, cagr, tenure } = input;
+        if (!amount) return;
+
+        const finalAmount = isSIP ? calculateSIP() : calculateLumpsum();
 
         const investedAmount = isSIP ? 12 * tenure * amount : amount;
         onChange({
@@ -63,7 +65,7 @@ const Calculator = ({ onChange, isSIP }) => {
         <div>
             <div class="relative mb-6">
                 <label className="block mb-2 text-sm font-medium text-gray-900" for="labels-range-input">Tenure {input.tenure} year(s)</label>
-                <input name="tenure" value={input.tenure} onChange={onInputChange} id="labels-range-input" type="range" min="1" max="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" />
+                <input name="tenure" value={input.tenure} onChange={onInputChange} id="labels-range-input" type="range" min="1" max="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer bg-blue-200 slider" />
                 <span class="text-sm text-gray-500 absolute start-0 -bottom-6">1 year</span>
                 <span class="text-sm text-gray-500 absolute end-0 -bottom-6">50 years</span>
             </div>
@@ -72,7 +74,7 @@ const Calculator = ({ onChange, isSIP }) => {
             <br />
             <div class="relative">
                 <label class="block mb-2 text-sm font-medium text-gray-900" for="labels-range-input">Expected CAGR {input.cagr + ' %'}</label>
-                <input name="cagr" value={input.cagr} onChange={onInputChange} id="labels-range-input" type="range" min="1" max="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" />
+                <input name="cagr" value={input.cagr} onChange={onInputChange} id="labels-range-input" type="range" min="1" max="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none bg-blue-200 cursor-pointer" />
                 <span class="text-sm text-gray-500 absolute start-0 -bottom-6">1%</span>
                 <span class="text-sm text-gray-500 absolute end-0 -bottom-6">100%</span>
             </div>

@@ -27,9 +27,12 @@ function Result({ data }) {
             </div>
 
             {/* Final Amount */}
-            <div className="flex items-center justify-between bg-yellow-100 text-yellow-800 px-4 py-2 rounded-md">
-                <span className="text-lg font-medium">Final Amount</span>
-                <span className="text-lg font-semibold">{getFormattedCurrency(finalAmount)}</span>
+            <div className="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-md">
+                <div className="flex items-center justify-between">
+                    <span className="text-lg font-medium">Final Amount</span>
+                    <span className="block mt-2 text-lg font-semibold">{getFormattedCurrency(finalAmount)}</span>
+                </div>
+                <h1 className="text-xs">{`@${cagr}% for ${tenure} year(s)`}</h1>
             </div>
         </div>
         <PieChart data={data} />
