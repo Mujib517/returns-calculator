@@ -17,10 +17,7 @@ const PieChart = ({ data }) => {
                     '#D97706',
                     'rgb(21 128 61)',
                 ],
-                borderColor: [
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(75, 192, 192, 1)',
-                ],
+                
                 borderWidth: 2,
             },
         ],

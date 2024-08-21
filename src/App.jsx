@@ -10,6 +10,9 @@ function App() {
   const [result, setResult] = useState(null);
 
   const onTabChange = (value) => {
+    if (value === selectedTab) return;
+
+    setResult(null);
     setSelectedTab(value);
   };
 
@@ -27,8 +30,8 @@ function App() {
         Returns Calculator
       </h1>
     </div>
-    <div className="flex p-2">
-      <div className="w-max-sm">
+    <div className="flex">
+      <div className="w-full">
         <Tabs onChange={onTabChange} />
         {selectedTab === 1 ? <Lumpsum onChange={onCalculate} /> : <SIP />}
         {result ? <Result data={result} /> : null}

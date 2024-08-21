@@ -50,15 +50,18 @@ const Lumpsum = ({ onChange }) => {
                 <span class="text-sm text-gray-500 absolute end-0 -bottom-6">50 years</span>
             </div>
         </div>
-        <div>
-            <div class="relative mb-6">
+        <div className="mt-6">
+            <br />
+            <div class="relative">
                 <label class="block mb-2 text-sm font-medium text-gray-900" for="labels-range-input">Expected CAGR {input.cagr + ' %'}</label>
                 <input name="cagr" value={input.cagr} onChange={onInputChange} id="labels-range-input" type="range" min="1" max="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" />
                 <span class="text-sm text-gray-500 absolute start-0 -bottom-6">1%</span>
                 <span class="text-sm text-gray-500 absolute end-0 -bottom-6">100%</span>
             </div>
         </div>
-        <button onClick={onCalculate} type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Calculate</button>
+        <div className="mt-6">
+            <button onClick={onCalculate} type="submit" class="mt-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Calculate</button>
+        </div>
     </div>
 };
 

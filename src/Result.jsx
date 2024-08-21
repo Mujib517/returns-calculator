@@ -2,72 +2,38 @@ import PieChart from "./PieChart";
 import { toWords } from "./utils/currencyUtil";
 
 function Result({ data }) {
+
     const { amount, finalAmount, cagr, tenure } = data;
+    const returns = finalAmount - amount;
 
-    return (<div className="p-2 m-2">
-        <div class="relative">
-            <PieChart data={data} />
-            <table class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-4">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            Type
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Amount
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            In Words
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Invested
-                        </th>
-                        <td class="px-6 py-4">
-                            {amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                        </td>
-                        <td class="px-6 py-4">
-                            <span className="mb-2 text-xs">{toWords.convert(amount)}</span>
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Returns
-                        </th>
-                        <td class="px-6 py-4">
-                            {(finalAmount - amount).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                        </td>
-                        <td class="px-6 py-4">
-                            <span className="mb-2 text-xs">{toWords.convert(finalAmount - amount)}</span>
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Total
-                        </th>
-                        <td class="px-6 py-4">
-                            {finalAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                        </td>
-                        <td class="px-6 py-4">
-                            <span className="mb-2 text-xs">{toWords.convert(finalAmount)}</span>
-                        </td>
-                    </tr>
-                    <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Parameters
-                        </th>
-                        <td class="px-6 py-4" colSpan={2}>
-                            @{cagr} % for {tenure} year(s)
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+    const getFormattedCurrency = (amt) => {
+        return '₹' + amt.toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 0 })
+    };
+
+    return <div className="w-full max-w-lg p-6 bg-white rounded-lg shadow-lg">
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-8">Summary</h1>
+        <div className="space-y-4">
+            {/* Invested Amount */}
+            <div className="flex items-center justify-between bg-blue-100 text-blue-800 px-4 py-2 rounded-md">
+                <span className="text-lg font-medium">Invested Amount</span>
+                <span className="text-lg font-semibold">{getFormattedCurrency(amount)}</span>
+            </div>
+
+            {/* Returns */}
+            <div className="flex items-center justify-between bg-green-100 text-green-800 px-4 py-2 rounded-md">
+                <span className="text-lg font-medium">Expected Returns</span>
+                <span className="text-lg font-semibold">{getFormattedCurrency(returns)}</span>
+            </div>
+
+            {/* Final Amount */}
+            <div className="flex items-center justify-between bg-yellow-100 text-yellow-800 px-4 py-2 rounded-md">
+                <span className="text-lg font-medium">Final Amount</span>
+                <span className="text-lg font-semibold">{getFormattedCurrency(finalAmount)}</span>
+            </div>
         </div>
-
-    </div>);
+        <PieChart data={data} />
+    </div>
 }
 
 export default Result;
