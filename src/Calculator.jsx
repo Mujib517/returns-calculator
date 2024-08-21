@@ -3,7 +3,7 @@ import { NumericFormat } from 'react-number-format';
 import { toWords } from './utils/currencyUtil';
 
 
-const Lumpsum = ({ onChange }) => {
+const Calculator = ({ onChange, isSIP }) => {
 
     const [input, setInput] = useState({
         amount: 0,
@@ -16,13 +16,31 @@ const Lumpsum = ({ onChange }) => {
         setInput(changedInput);
     };
 
-    const onCalculate = () => {
+    const calculateLumpsum = () => {
         const { amount, cagr, tenure } = input;
         if (!amount) return;
         const percent = 1 + (cagr / 100);
-        const finalAmount = amount * (Math.pow(percent, tenure));
+        return amount * (Math.pow(percent, tenure));
+    };
+
+    const calculateSIP = () => {
+        const { amount, cagr, tenure } = input;
+        const totalMonths = 12 * tenure;
+
+        const monthlyRate = (cagr / 100) / 12;
+
+        const futureValue = amount * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) * (1 + monthlyRate);
+
+        return futureValue;
+    };
+
+    const onCalculate = () => {
+        const finalAmount = isSIP ? calculateSIP() : calculateLumpsum();
+        const { amount, cagr, tenure } = input;
+
+        const investedAmount = isSIP ? 12 * tenure * amount : amount;
         onChange({
-            amount,
+            amount: investedAmount,
             cagr,
             tenure,
             finalAmount
@@ -36,7 +54,7 @@ const Lumpsum = ({ onChange }) => {
 
     return <div class="max-w-sm w-full p-4">
         <div class="mb-5">
-            <label for="Amount" class="block mb-2 text-sm font-medium text-gray-900">Total Amount</label>
+            <label for="Amount" class="block mb-2 text-sm font-medium text-gray-900">{isSIP ? 'Monthly Amount' : 'Lumpsum Amount'}</label>
             <NumericFormat placeholder="100,000" name="amount" onValueChange={onAmtChange} class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" prefix="₹" thousandSeparator="," />
             {input.amount ?
                 <span className="text-left text-xs">{toWords.convert(input.amount)}</span>
@@ -65,4 +83,4 @@ const Lumpsum = ({ onChange }) => {
     </div>
 };
 
-export default Lumpsum;
+export default Calculator;

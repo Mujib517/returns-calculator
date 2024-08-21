@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import Lumpsum from './Lumpsum'
+import Calculator from './Calculator'
 import Tabs from './Tabs'
 import SIP from './SIP'
 import Result from './Result'
@@ -33,7 +33,7 @@ function App() {
     <div className="flex">
       <div className="w-full">
         <Tabs onChange={onTabChange} />
-        {selectedTab === 1 ? <Lumpsum onChange={onCalculate} /> : <SIP />}
+        <Calculator onChange={onCalculate} isSIP={selectedTab === 2} />
         {result ? <Result data={result} /> : null}
       </div>
     </div>

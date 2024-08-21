@@ -17,13 +17,34 @@ const PieChart = ({ data }) => {
                     '#D97706',
                     'rgb(21 128 61)',
                 ],
-                
+
                 borderWidth: 2,
             },
         ],
     };
 
-    return <Pie data={chartData} />;
+    const formatNumber = (value, locale) => {
+        return new Intl.NumberFormat(locale, {
+            style: 'currency',
+            currency: 'INR'
+        }).format(value);
+    };
+
+    const locale = 'en-IN';  
+
+    const pieChartOptions = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return formatNumber(tooltipItem.raw, locale);
+                    }
+                }
+            }
+        }
+    };
+
+    return <Pie data={chartData} options={pieChartOptions} />;
 };
 
 export default PieChart;
