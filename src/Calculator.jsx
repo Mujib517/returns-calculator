@@ -73,10 +73,10 @@ const Calculator = ({ onChange, isSIP }) => {
         <div className="mt-6">
             <br />
             <div class="relative">
-                <label class="block mb-2 text-sm font-medium text-gray-900" for="labels-range-input">Expected CAGR {input.cagr + ' %'}</label>
+                <label class="block mb-2 text-sm font-medium text-gray-900" for="labels-range-input">Expected CAGR {input.cagr + '%'}</label>
                 <input name="cagr" value={input.cagr} onChange={onInputChange} id="labels-range-input" type="range" min="1" max="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none bg-blue-200 cursor-pointer" />
                 <span class="text-sm text-gray-500 absolute start-0 -bottom-6">1%</span>
-                <span class="text-sm text-gray-500 absolute end-0 -bottom-6">100%</span>
+                <span class="text-sm text-gray-500 absolute end-0 -bottom-6">50%</span>
             </div>
         </div>
         <div className="mt-6">
